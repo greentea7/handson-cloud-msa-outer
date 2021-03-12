@@ -20,7 +20,7 @@ spec:
           - name: POSTGRES_DB
             value: eshop_db
           - name: POSTGRES_PASSWORD
-            value: password
+            value: postgresqlpw
         ports:
         - containerPort: 5432
         resources:

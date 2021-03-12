@@ -3,6 +3,7 @@ kind: Deployment
 metadata:
   name: eshop-productservice
 spec:
+  replicas: 2
   selector:
     matchLabels:
       app: eshop-productservice
@@ -20,10 +21,10 @@ spec:
         env:
         - name: PORT
           value: "8092"
-        - name: MONGO_URI
-          value: "mongodb://admin:password@mongodb"
         - name: INIT_DATA
           value: "true"
+        - name: MONGO_URI
+          value: "mongodb://mongodb-arbiter-headless.default.svc.cluster.local/?replicaSet=rs0"          
         resources:
           requests:
             cpu: 100m
