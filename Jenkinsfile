@@ -69,7 +69,7 @@ pipeline {
          
           if [ -d "environments/${TARGET_ENV}/" ]; then
             cd environments/${TARGET_ENV}
-            terraform plan
+            terraform plan -lock=false
           else
             for dir in environments/*/
             do 
@@ -80,7 +80,7 @@ pipeline {
               echo "*************** TERRAFOM PLAN ******************"
               echo "******* At environment: ${env} ********"
               echo "*************************************************"
-              terraform plan || exit 1
+              terraform plan -lock=false || exit 1
               cd ../../../
             done
           fi'''
@@ -99,7 +99,7 @@ pipeline {
 
           if [ -d "environments/${TARGET_ENV}/" ]; then
             cd environments/${TARGET_ENV}
-            terraform apply -input=false -auto-approve
+            terraform apply -lock=false -input=false -auto-approve
           else
             echo "*************** SKIPPING APPLY ******************"
             echo "Branch '$TARGET_ENV' does not represent an official environment."
